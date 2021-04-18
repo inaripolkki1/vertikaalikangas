@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+<title>Liikelista</title>
+<meta http-equiv="Content-Type" content="text/html;
+charset=UTF-8" />
+</head>
+<body>
+	<h1>Liikkeet</h1>
+	<table class="table table-striped">
+		<tbody>
+			<tr>
+				<th>Sarjan nimi</th>
+			</tr>
+
+			<tr th:each="sarja : ${sarjat}">
+				<td th:text="${sarja.sarjanNimi}">nimi</td>
+				<td> <a th:href="@{/poistasarja/{id}(id=${sarja.id})}"  class="btn btn-danger">Delete</a> </td>
+				<td> <a th:href="@{/muokkaasarjaa/{id}(id=${sarja.id})}" class="btn btn-success">Muokkaa</a> </td>
+			</tr>
+		</tbody>
+		
+		
+	</table>
+	<a href="/lisaasarja"  class="btn btn-success">Lisaa sarja</a>
+	<!-- <div th:each="sarja : ${sarjat}">
+		<div th:text="${sarja.sarjanNimi}"></div>
+		<ul>
+			<div th:each="sarja.lisatytLiikkeet.liike : ${sarjat}">
+				<li th:text="${lisatytLiikkeet.liikkeet.nimi}"></li>
+			</div>
+		</ul>
+	</div>
+	<tbody>
+		<th:block th:each="sarja : ${sarjat}">
+		<tr>
+		<td th:text="${sarja.sarjanNimi}"></td>
+		<td th:text="${sarja.lisatytLiikkeet.liike.nimi}"></td>
+		</tr>
+		</th:block>
+		</tbody>
+	<td th:text="${sarja.lisatytLiikkeet}">nimi</td>
+	<div th:each="sarja : ${sarjat}">
+		<div th:text="${sarja.sarjanNimi}"></div>
+		<ul>
+			<div th:each="sarja.lisatytLiikkeet.liike : ${liikkeet}">
+				<li th:text="${lisatytLiikkeet.liike.nimi}"></li>
+			</div>
+		</ul>
+	</div> -->
+	
+	<!-- <div th:each="sarja : ${sarjat}">
+		<div th:text="${sarja.sarjanNimi}"></div>
+		<ul>
+			<div th:each="lisatytLiikkeet.sarja.liike : ${sarja.liikkeet}">
+				<li th:text="${liike.nimi}"></li>
+			</div>
+		</ul>
+	</div> -->
+	
+</body>
+</html>

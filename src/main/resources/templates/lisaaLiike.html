@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Booklist</title>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+</head>
+<body>
+<div class="container">
+<h2>Lisää liike</h2>
+<div class="col-md-4">
+<form th:object="${liike}" th:action="@{tallenna}" action="#" method="post">
+
+<label for="nimi">Nimi</label>
+<input type="text" id="nimi" th:field="*{nimi}" class="form-control">
+<div style="clear: both; display: block; height: 10px;"></div>
+
+<label for="alkuasento">Alkuasento</label>
+<input type="text" id="alkuasento" th:field="*{alkuasento}" class="form-control">
+<div style="clear: both; display: block; height: 10px;"></div>
+
+<label for="vaikeustaso">Vaikeustaso</label>
+<input type="text" id="vaikeustaso" th:field="*{vaikeustaso}" class="form-control">
+<div style="clear: both; display: block; height: 10px;"></div>
+
+<label for="vaadittuKorkeus">Vaadittu korkeus</label>
+<input type="text" id="vaadittuKorkeus" th:field="*{vaadittuKorkeus}" class="form-control">
+<div style="clear: both; display: block; height: 10px;"></div>
+
+<label for="erityisvaatimus">erityisvaatimus</label>
+<input type="text" id="erityisvaatimus" th:field="*{erityisvaatimus}" class="form-control">
+<div style="clear: both; display: block; height: 10px;"></div>
+
+<!-- <label for="sarjalista">Sarja</label>
+<select id="sarjalista" th:field="*{luodutsarjat}" class="form-control">
+<option th:each="luodutsarjat.sarja: ${sarjat}"
+			th:value="${sarja.sarja_id}"
+			th:text="${sarja.sarjanNimi}" > </option>
+			</select> -->
+
+
+<!-- <label for="liike.luodutsarjat.sarjanNimi">Sarjan nimi</label>
+<input type="text" id="sarjanNimi" th:field="*{sarjanNimi}" class="form-control">
+<div style="clear: both; display: block; height: 10px;"></div>
+<label for="sarjalista">Sarja</label>
+<input type="text" id="sarjalista" th:field="*{sarja}" class="form-control">
+<div style="clear: both; display: block; height: 10px;"></div>
+ -->
+
+<input type="submit" class="btn btn-primary" value="tallenna">
+</form>
+</div>
+</div>
+</body>
+</html>

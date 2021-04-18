@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+<title>Liikelista</title>
+<meta http-equiv="Content-Type" content="text/html;
+charset=UTF-8" />
+</head>
+<body>
+	<h1>Liikkeet</h1>
+	<table class="table table-striped">
+		<tbody>
+			<tr>
+				<th>Liikkeen nimi</th>
+				<th>Alkuasento</th>
+				<th>Vaikeustaso</th>
+				<th>Minimikorkeus suorittamiselle</th>
+				<th>Erityisvaatimus</th>
+			</tr>
+
+			<tr th:each="liike : ${liikkeet}">
+				<td th:text="${liike.nimi}">nimi</td>
+				<td th:text="${liike.alkuasento}">alkuasento</td>
+				<td th:text="${liike.vaikeustaso}">vaikeustaso</td>
+				<td th:text="${liike.vaadittuKorkeus}">vaadittu korkeus</td>
+				<td th:text="${liike.erityisvaatimus}">erityisvaatimus</td>
+				<td> <a th:href="@{/poistaliike/{id}(id=${liike.id})}"  class="btn btn-danger">Poista</a> </td>
+				<td> <a th:href="@{/muokkaaliiketta/{id}(id=${liike.id})}" class="btn btn-success">Muokkaa</a> </td>
+			</tr>
+		</tbody>
+	</table>
+	<a href="/lisaaliike"  class="btn btn-success">Lisaa liike</a>
+</body>
+</html>

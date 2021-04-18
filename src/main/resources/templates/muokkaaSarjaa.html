@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Muokkaa sarjaa</title>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+</head>
+<body>
+<div class="container">
+<h2>Muokkaa sarjaa</h2>
+<div class="col-md-4">
+<form th:object="${sarja}" th:action="@{../tallennasarja}" action="#" method="post">
+
+<input type="hidden" th:field="*{id}" class="form-control">
+
+<label for="sarjanNimi">Sarjan nimi</label>
+<input type="text" id="sarjanNimi" th:field="*{sarjanNimi}" class="form-control">
+<div style="clear: both; display: block; height: 10px;"></div>
+
+<input type="submit" class="btn btn-primary" value="Tallenna">
+</form>
+</div>
+</div>
+</body>
+</html>

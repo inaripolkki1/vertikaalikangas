@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Muokkaa sarjaa</title>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+</head>
+<body>
+<div class="container">
+<h2>Muokkaa liiketta</h2>
+<div class="col-md-4">
+<form th:object="${liike}" th:action="@{../tallenna}" action="#" method="post">
+
+<input type="hidden" th:field="*{id}" class="form-control">
+
+<label for="nimi">Liikkeen nimi</label>
+<input type="text" id="nimi" th:field="*{nimi}" class="form-control">
+<div style="clear: both; display: block; height: 10px;"></div>
+
+<label for="alkuasento">Alkuasento</label>
+<input type="text" id="alkuasento" th:field="*{alkuasento}" class="form-control">
+<div style="clear: both; display: block; height: 10px;"></div>
+
+<label for="vaikeustaso">Vaikeustaso</label>
+<input type="text" id="vaikeustaso" th:field="*{vaikeustaso}" class="form-control">
+<div style="clear: both; display: block; height: 10px;"></div>
+
+<label for="vaadittuKorkeus">Vaadittu suorituskorkeus</label>
+<input type="text" id="vaadittuKorkeus" th:field="*{vaadittuKorkeus}" class="form-control">
+<div style="clear: both; display: block; height: 10px;"></div>
+
+<label for="erityisvaatimus">Erityisvaatimus</label>
+<input type="text" id="erityisvaatimus" th:field="*{erityisvaatimus}" class="form-control">
+<div style="clear: both; display: block; height: 10px;"></div>
+
+<input type="submit" class="btn btn-primary" value="Tallenna">
+</form>
+</div>
+</div>
+</body>
+</html>
