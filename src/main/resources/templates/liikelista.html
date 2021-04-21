@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
 	th:href="@{css/bootstrap.min.css}" />
@@ -8,8 +8,9 @@
 charset=UTF-8" />
 </head>
 <body>
+<p th:inline="text">Tervetuloa [[${#httpServletRequest.remoteUser}]]</p>
 	<h1>Liikkeet</h1>
-	<a href="/lisaaliike" class="btn btn-success">Lisaa liike</a>
+	<a href="/lisaaliike" class="btn btn-success">Lisää liike</a>
 	<a href="/sarjalista" class="btn btn-success">Sarjalista</a>
 
 	<table class="table table-striped">
@@ -21,7 +22,7 @@ charset=UTF-8" />
 				<th>Vaikeustaso</th>
 				<th>Minimikorkeus suorittamiselle</th>
 				<th>Erityisvaatimus</th>
-				<th>Poista</th>
+				<th sec:authorize="hasAuthority('admin')">Poista</th>
 				<th>Muokkaa</th>
 			</tr>
 
@@ -31,7 +32,7 @@ charset=UTF-8" />
 				<td th:text="${liike.vaikeustaso}">vaikeustaso</td>
 				<td th:text="${liike.vaadittuKorkeus}">vaadittu korkeus</td>
 				<td th:text="${liike.erityisvaatimus}">erityisvaatimus</td>
-				<td><a th:href="@{/poistaliike/{id}(id=${liike.id})}"
+				<td sec:authorize="hasAuthority('admin')"><a th:href="@{/poistaliike/{id}(id=${liike.id})}"
 					class="btn btn-danger">Poista</a></td>
 				<td><a th:href="@{/muokkaaliiketta/{id}(id=${liike.id})}"
 					class="btn btn-success">Muokkaa</a></td>
@@ -75,6 +76,8 @@ charset=UTF-8" />
 		</ul>
 	</div>
 
-
+<form th:action="@{/logout}" method="post">
+<input type="submit" value="Logout" class="btn btn-danger"/>
+</form>
 </body>
 </html>

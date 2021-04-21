@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
 	th:href="@{css/bootstrap.min.css}" />
@@ -9,6 +9,14 @@ charset=UTF-8" />
 </head>
 <body>
 	<h1>Sarjat</h1>
+	<div class="col-md-4">
+		<h3 th:inline="text">Tervetuloa [[${#httpServletRequest.remoteUser}]]</h3>
+	</div>
+	<div class="col-md-4" style="padding:20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Kirjaudu ulos" class="btn btn-sm btn-danger"/>
+		</form>
+	</div>
 	<a href="/lisaasarja" class="btn btn-primary">Lisää sarja</a>
 	<a href="/liikelista" class="btn btn-primary">Liikelista</a>
 
@@ -18,7 +26,7 @@ charset=UTF-8" />
 			<tr>
 				<th>Sarjan nimi</th>
 				<th>Liikkeet</th>
-				<th>Poista sarja</th>
+				<th sec:authorize="hasAuthority('ADMIN')">Poista sarja</th>
 				<th>Muokkaa sarjan nimeä</th>
 			</tr>
 
@@ -28,7 +36,7 @@ charset=UTF-8" />
 					<table>
 						<tr th:each="liike : ${sarja.lisatytLiikkeet}">
 							<td th:text="${liike.nimi}"></td>
-							<td><a th:href="@{/poistaliike/{id}(id=${liike.id})}"
+							<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/poistaliike/{id}(id=${liike.id})}"
 								class="btn btn-basic btn-sm">Poista</a></td>
 						</tr>
 					</table>
