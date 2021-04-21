@@ -16,8 +16,18 @@
 <input type="text" id="sarjanNimi" th:field="*{sarjanNimi}" class="form-control">
 <div style="clear: both; display: block; height: 10px;"></div>
 
+<!-- miksei toimi täällä, kun toimii lisää sarja kohdassa
+
+<label for="liikelista">Liike</label> <select id="liikelista"
+					th:field="*{lisatytLiikkeet}" class="form-control">
+					<option th:each="liike: ${liikkeet}" th:value="${liike.id}"
+						th:text="${liike.nimi}"></option>
+				</select> -->
+
+
 <input type="submit" class="btn btn-primary" value="Tallenna">
 </form>
+
 </div>
 </div>
 </body>

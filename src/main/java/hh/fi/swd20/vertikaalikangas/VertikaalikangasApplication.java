@@ -2,16 +2,9 @@ package hh.fi.swd20.vertikaalikangas;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Bean;
-
 import hh.fi.swd20.vertikaalikangas.domain.Liike;
 import hh.fi.swd20.vertikaalikangas.domain.LiikeRepository;
 import hh.fi.swd20.vertikaalikangas.domain.Sarja;
@@ -37,6 +30,7 @@ public class VertikaalikangasApplication {
 		Sarja alkeisSarja = new Sarja("Alkeistason sarja");
 		Sarja jatkoSarja = new Sarja("Jatkotason sarja");
 		Sarja edistynytSarja = new Sarja("Edistyneiden sarja");
+		
 		List<Sarja> sarjat = Arrays.asList(alkeisSarja, jatkoSarja, edistynytSarja);
 		
 		sarjarepository.saveAll(sarjat);

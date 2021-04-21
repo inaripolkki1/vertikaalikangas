@@ -5,17 +5,27 @@
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 </head>
 <body>
-<div class="container">
-<h2>Lisää liike</h2>
-<div class="col-md-4">
-<form th:object="${sarja}" th:action="@{tallennasarja}" action="#" method="post">
+	<div class="container">
+		<h2>Lisää sarja</h2>
 
-<label for="sarjanNimi">Sarjan nimi</label>
-<input type="text" id="sarjanNimi" th:field="*{sarjanNimi}" class="form-control">
-<div style="clear: both; display: block; height: 10px;"></div>
+		<div class="col-md-4">
 
+			<form th:object="${sarja}" th:action="@{tallennasarja}" action="#"
+				method="post">
 
-<!-- <label for="liike.luodutsarjat.sarjanNimi">Sarjan nimi</label>
+				<label for="sarjanNimi">Sarjan nimi</label> <input type="text"
+					id="sarjanNimi" th:field="*{sarjanNimi}" class="form-control">
+				<div style="clear: both; display: block; height: 10px;"></div>
+
+				<label for="liikelista">Liike</label> <select id="liikelista"
+					th:field="*{lisatytLiikkeet}" class="form-control">
+					<option th:each="liike: ${liikkeet}" th:value="${liike.id}"
+						th:text="${liike.nimi}"></option>
+				</select> <input type="submit" class="btn btn-primary" value="tallenna">
+				
+				
+				
+				<!-- <label for="liike.luodutsarjat.sarjanNimi">Sarjan nimi</label>
 <input type="text" id="sarjanNimi" th:field="*{sarjanNimi}" class="form-control">
 <div style="clear: both; display: block; height: 10px;"></div>
 <label for="sarjalista">Sarja</label>
@@ -23,9 +33,12 @@
 <div style="clear: both; display: block; height: 10px;"></div>
  -->
 
-<input type="submit" class="btn btn-primary" value="tallenna">
-</form>
-</div>
-</div>
+			</form>
+
+
+		</div>
+
+
+	</div>
 </body>
 </html>

@@ -24,6 +24,7 @@ public class LiikeController {
 	@RequestMapping("/liikelista")
 	public String liikelista(Model model) {
 		model.addAttribute("liikkeet", liikerepository.findAll());
+		model.addAttribute("sarjat", sarjarepository.findAll());
 		return "liikelista";
 
 	}
@@ -32,7 +33,7 @@ public class LiikeController {
 	@RequestMapping("/lisaaliike")
 	public String lisaaLiike(Model model) {
 		model.addAttribute("liike", new Liike());
-		// model.addAttribute("sarjat", sarjarepository.findAll());
+		model.addAttribute("sarjat", sarjarepository.findAll());
 		return "lisaaLiike";
 	}
 
@@ -47,6 +48,7 @@ public class LiikeController {
 	@RequestMapping(value = "/muokkaaliiketta/{id}", method = RequestMethod.GET)
 	public String muokkaaLiiketta(@PathVariable(value = "id") Long id, Model model) {
 		model.addAttribute("liike", liikerepository.findById(id));
+		model.addAttribute("sarja", sarjarepository.findById(id));
 		return "muokkaaLiiketta";
 	}
 

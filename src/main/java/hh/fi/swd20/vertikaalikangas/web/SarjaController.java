@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import hh.fi.swd20.vertikaalikangas.domain.LiikeRepository;
 import hh.fi.swd20.vertikaalikangas.domain.Sarja;
 import hh.fi.swd20.vertikaalikangas.domain.SarjaRepository;
 
@@ -16,9 +17,15 @@ public class SarjaController {
 	@Autowired
 	private SarjaRepository sarjarepository;
 	
+	@Autowired
+	private LiikeRepository liikerepository;
+	
+	
+	//listaa sarjat
 	@RequestMapping("/sarjalista")
 	public String sarjalista(Model model) {
 		model.addAttribute("sarjat", sarjarepository.findAll());
+		model.addAttribute("liikkeet", liikerepository.findAll());
 		return "sarjalista";
 	}
 	
@@ -26,6 +33,7 @@ public class SarjaController {
 	@RequestMapping(value = "/lisaasarja")
 	public String lisaaSarja(Model model) {
 			model.addAttribute("sarja", new Sarja());
+			model.addAttribute("liikkeet", liikerepository.findAll());
 	return "lisaaSarja";
 	}
 	
@@ -37,16 +45,18 @@ public class SarjaController {
 	}
 	
 	//muokkaa sarjaa
-	@RequestMapping(value = "/muokkaasarjaa/{sarja_id}", method = RequestMethod.GET)
-	public String muokkaaSarjaa(@PathVariable(value = "sarja_id") Long sarja_id, Model model) {
-		model.addAttribute("sarja", sarjarepository.findById(sarja_id));
+	@RequestMapping(value = "/muokkaasarjaa/{id}", method = RequestMethod.GET)
+	public String muokkaaSarjaa(@PathVariable(value = "id") Long id, Model model) {
+		model.addAttribute("sarja", sarjarepository.findById(id));
+		//model.addAttribute("liike", liikerepository.findById(id));
+		model.addAttribute("liikkeet", liikerepository.findAll());
 		return "muokkaaSarjaa";
 	}
 	
 	//poista sarja
 	@RequestMapping(value = "/poistasarja/{id}", method = RequestMethod.GET) 
-	public String poistaSarja(@PathVariable("id") Long sarja_id, Model model) {
-		sarjarepository.deleteById(sarja_id);
+	public String poistaSarja(@PathVariable("id") Long id, Model model) {
+		sarjarepository.deleteById(id);
 		return "redirect:../sarjalista";
 	}
 	

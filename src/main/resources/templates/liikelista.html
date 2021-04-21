@@ -1,14 +1,19 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
 <title>Liikelista</title>
 <meta http-equiv="Content-Type" content="text/html;
 charset=UTF-8" />
 </head>
 <body>
 	<h1>Liikkeet</h1>
+	<a href="/lisaaliike" class="btn btn-success">Lisaa liike</a>
+	<a href="/sarjalista" class="btn btn-success">Sarjalista</a>
+
 	<table class="table table-striped">
+
 		<tbody>
 			<tr>
 				<th>Liikkeen nimi</th>
@@ -16,6 +21,8 @@ charset=UTF-8" />
 				<th>Vaikeustaso</th>
 				<th>Minimikorkeus suorittamiselle</th>
 				<th>Erityisvaatimus</th>
+				<th>Poista</th>
+				<th>Muokkaa</th>
 			</tr>
 
 			<tr th:each="liike : ${liikkeet}">
@@ -24,11 +31,50 @@ charset=UTF-8" />
 				<td th:text="${liike.vaikeustaso}">vaikeustaso</td>
 				<td th:text="${liike.vaadittuKorkeus}">vaadittu korkeus</td>
 				<td th:text="${liike.erityisvaatimus}">erityisvaatimus</td>
-				<td> <a th:href="@{/poistaliike/{id}(id=${liike.id})}"  class="btn btn-danger">Poista</a> </td>
-				<td> <a th:href="@{/muokkaaliiketta/{id}(id=${liike.id})}" class="btn btn-success">Muokkaa</a> </td>
+				<td><a th:href="@{/poistaliike/{id}(id=${liike.id})}"
+					class="btn btn-danger">Poista</a></td>
+				<td><a th:href="@{/muokkaaliiketta/{id}(id=${liike.id})}"
+					class="btn btn-success">Muokkaa</a></td>
+					
+
+
 			</tr>
 		</tbody>
+		<!--		<form th:object="${liike}" th:action="@{tallenna}" action="#"
+			method="post">
+			<label for="sarjalista">Sarja</label> <select id="sarjalista"
+				th:field="*{sarja}" class="form-control">
+				<option th:each="sarja: ${sarjat}" th:value="${sarja.id}"
+					th:text="${sarja.sarjanNimi}"></option>
+			</select>
+		</form>  -->
+
+
+
 	</table>
-	<a href="/lisaaliike"  class="btn btn-success">Lisaa liike</a>
+
+	<div th:each="liike : ${liikkeet}">
+		<div th:text="${liike.nimi}"></div>
+		<ul>
+			<div th:each="sarja : ${liike.luodutsarjat}">
+				<li th:text="${sarja.sarjanNimi}">
+					</p>haloop
+					<p>
+					<div class="col-md-4">
+						<form th:object="${liike}" th:action="@{tallenna}" action="#"
+							method="post">
+							<label for="sarjalista">Sarja</label> <select id="sarjalista"
+								th:field="*{sarja}" class="form-control">
+								<option th:each="sarja: ${sarjat}" th:value="${sarja.id}"
+									th:text="${sarja.sarjanNimi}"></option>
+							</select> <input type="submit" class="btn btn-primary" value="Save">
+						</form>
+					</div>
+				</li>
+			</div>
+		</ul>
+	</div>
+
+
 </body>
 </html>
