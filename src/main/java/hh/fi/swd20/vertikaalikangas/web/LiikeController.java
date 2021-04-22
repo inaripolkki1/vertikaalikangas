@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -89,12 +90,14 @@ public class LiikeController {
 	}
 
 	// api
+	@CrossOrigin
 	@RequestMapping(value = "/liikes", method = RequestMethod.GET)
 	public @ResponseBody List<Liike> liikeListRest() {
 		return (List<Liike>) liikerepository.findAll();
 	}
 
 	// api id:llä
+	@CrossOrigin
 	@RequestMapping(value = "/liikes/{id}", method = RequestMethod.GET)
 	public @ResponseBody Optional<Liike> findLiikeRest(@PathVariable("id") Long id) {
 		return liikerepository.findById(id);
