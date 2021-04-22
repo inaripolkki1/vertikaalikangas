@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.RestController;
 
 import hh.fi.swd20.vertikaalikangas.domain.Liike;
 import hh.fi.swd20.vertikaalikangas.domain.LiikeRepository;
@@ -19,6 +20,7 @@ import hh.fi.swd20.vertikaalikangas.domain.User;
 import hh.fi.swd20.vertikaalikangas.domain.UserRepository;
 
 @SpringBootApplication
+@RestController
 public class VertikaalikangasApplication {
 
 	public static void main(String[] args) {
@@ -58,13 +60,13 @@ public class VertikaalikangasApplication {
 	public CommandLineRunner demo(UserRepository userrepository) {
 		return (args) -> {
 
-			// Create users: admin/admin user/user
+			// Luo käyttäjät: admin/admini user/useri
 			User user1 = new User("user", "$2a$10$D6XoktdshEWeNzPgqBXobuvoWp9nhQzN8DnW/Kp064fUbSLEtxnQ2", "USER");
 			User user2 = new User("admin", "$2a$10$FLMjZo.xsWYbWIX/WKRcvumZ6ITgebKjpIqH5b7ro/OT8NijkLCca", "ADMIN");
 			userrepository.save(user1);
 			userrepository.save(user2);
 			
-			log.info("Fetch all the books");
+			log.info("Hae käyttäjät");
 			for (User user : userrepository.findAll()) {
 			   log.info(user.toString());
 			}

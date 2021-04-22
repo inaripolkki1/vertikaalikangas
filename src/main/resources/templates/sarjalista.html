@@ -41,7 +41,7 @@ charset=UTF-8" />
 						</tr>
 					</table>
 				</td>
-				<td><a th:href="@{/poistasarja/{id}(id=${sarja.id})}"
+				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/poistasarja/{id}(id=${sarja.id})}"
 					class="btn btn-danger">Poista</a></td>
 				<td><a th:href="@{/muokkaasarjaa/{id}(id=${sarja.id})}"
 					class="btn btn-success">Muokkaa</a></td>

@@ -65,11 +65,13 @@ public class LiikeController {
 		return "redirect:../liikelista";
 	}
 	
+	//api
 	@RequestMapping(value = "/liikes", method = RequestMethod.GET)
 	public @ResponseBody List<Liike> liikeListRest() {
 		return (List<Liike>) liikerepository.findAll();
 	}
 	
+	//api id:llä
 	@RequestMapping(value = "/liike/{id}", method = RequestMethod.GET)
 	public @ResponseBody Optional<Liike> findLiikeRest(@PathVariable("id") Long id) {
 		return liikerepository.findById(id);
