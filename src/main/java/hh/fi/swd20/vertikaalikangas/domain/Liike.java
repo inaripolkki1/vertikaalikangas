@@ -14,6 +14,8 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import net.minidev.json.annotate.JsonIgnore;
+
 @Entity
 @Table(name="Liike")
 public class Liike {
@@ -31,6 +33,7 @@ public class Liike {
 	
 	
 	//ManyToMany 	TOIMII
+	
 	@JsonIgnoreProperties("liikkeet")
 	@ManyToMany
 	
@@ -39,6 +42,7 @@ public class Liike {
 			joinColumns = @JoinColumn(name = "liike_id"),
 			inverseJoinColumns = @JoinColumn(name = "sarja_id")
 			)
+	@JsonIgnore
 	private List<Sarja> luodutsarjat = new ArrayList<Sarja>();
 
 	public Liike(String nimi, String alkuasento, int vaikeustaso, double vaadittuKorkeus, String erityisvaatimus) {

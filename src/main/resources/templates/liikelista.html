@@ -22,8 +22,8 @@ charset=UTF-8" />
 				<th>Vaikeustaso</th>
 				<th>Minimikorkeus suorittamiselle</th>
 				<th>Erityisvaatimus</th>
-				<th sec:authorize="hasAuthority('admin')">Poista</th>
-				<th>Muokkaa</th>
+				<th sec:authorize="hasAuthority('ADMIN')">Poista</th>
+				<th sec:authorize="hasAuthority('ADMIN')">Muokkaa</th>
 			</tr>
 
 			<tr th:each="liike : ${liikkeet}">
@@ -32,9 +32,9 @@ charset=UTF-8" />
 				<td th:text="${liike.vaikeustaso}">vaikeustaso</td>
 				<td th:text="${liike.vaadittuKorkeus}">vaadittu korkeus</td>
 				<td th:text="${liike.erityisvaatimus}">erityisvaatimus</td>
-				<td sec:authorize="hasAuthority('admin')"><a th:href="@{/poistaliike/{id}(id=${liike.id})}"
+				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/poistaliike/{id}(id=${liike.id})}"
 					class="btn btn-danger">Poista</a></td>
-				<td><a th:href="@{/muokkaaliiketta/{id}(id=${liike.id})}"
+				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/muokkaaliiketta/{id}(id=${liike.id})}"
 					class="btn btn-success">Muokkaa</a></td>
 					
 

@@ -10,7 +10,7 @@
 		
 		<div class="col-md-4">
 
-			<form th:object="${liike}" th:action="@{tallenna}" action="#"
+			<form th:object="${liike}" th:action="@{tallenna2}" action="#"
 				method="post">
 
 				<label for="nimi">Nimi</label> <input type="text" id="nimi"
@@ -34,13 +34,12 @@
 					type="text" id="erityisvaatimus" th:field="*{erityisvaatimus}"
 					class="form-control">
 				<div style="clear: both; display: block; height: 10px;"></div>
-				<!--kommenteissä tässä, jotta voi lisätä liikkeen lisäämättä sitä sarjaan
-				 <label for="sarjalista">Sarja</label> <select id="sarjalista"
+
+				<label for="sarjalista">Sarja</label> <select id="sarjalista"
 					th:field="*{luodutsarjat}" class="form-control">
 					<option th:each="sarja: ${sarjat}" th:value="${sarja.id}"
 						th:text="${sarja.sarjanNimi}"></option>
-				</select>  -->
-				<input type="submit" class="btn btn-primary" value="tallenna">
+				</select> <input type="submit" class="btn btn-primary" value="tallenna">
 			</form>
 
 		</div>

@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import net.minidev.json.annotate.JsonIgnore;
+
+
 @Entity
 @Table(name = "Sarja")
 public class Sarja {
@@ -20,7 +23,7 @@ public class Sarja {
 	
 	
 	//ManyToMany	 TOIMII (paitsi liikken lisäys sarjaan ja päin vastoin
-	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "luodutsarjat")
 	private List<Liike> lisatytLiikkeet = new ArrayList<Liike>();
 	

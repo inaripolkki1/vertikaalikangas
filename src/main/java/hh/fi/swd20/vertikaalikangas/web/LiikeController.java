@@ -42,11 +42,26 @@ public class LiikeController {
 		return "lisaaLiike";
 	}
 
+	// lisää uusi liike
+	@RequestMapping("/lisaaliike2")
+	public String lisaaLiike2(Model model) {
+		model.addAttribute("liike", new Liike());
+		model.addAttribute("sarjat", sarjarepository.findAll());
+		return "lisaaLiike2";
+	}
+
 	// tallenna uusi liike
 	@RequestMapping(value = "/tallenna", method = RequestMethod.POST)
 	public String save(Liike liike) {
 		liikerepository.save(liike);
 		return "redirect:liikelista";
+	}
+
+	// tallenna uusi liike
+	@RequestMapping(value = "/tallenna2", method = RequestMethod.POST)
+	public String save2(Liike liike) {
+		liikerepository.save(liike);
+		return "redirect:sarjalista";
 	}
 
 	// muokkaa liikettä
@@ -59,20 +74,28 @@ public class LiikeController {
 
 	// poista liike
 	@RequestMapping(value = "/poistaliike/{id}", method = RequestMethod.GET)
-	@PreAuthorize("hasRole('admin')")
+	@PreAuthorize("hasRole('ADMIN')")
 	public String poistaLiike(@PathVariable("id") Long id, Model model) {
 		liikerepository.deleteById(id);
 		return "redirect:../liikelista";
 	}
-	
-	//api
+
+	// poista liike sarjasta (poistuu kokonaan toistaiseksi)
+	@RequestMapping(value = "/poistaliike2/{id}", method = RequestMethod.GET)
+	@PreAuthorize("hasRole('ADMIN')")
+	public String poistaLiike2(@PathVariable("id") Long id, Model model) {
+		liikerepository.deleteById(id);
+		return "redirect:../sarjalista";
+	}
+
+	// api
 	@RequestMapping(value = "/liikes", method = RequestMethod.GET)
 	public @ResponseBody List<Liike> liikeListRest() {
 		return (List<Liike>) liikerepository.findAll();
 	}
-	
-	//api id:llä
-	@RequestMapping(value = "/liike/{id}", method = RequestMethod.GET)
+
+	// api id:llä
+	@RequestMapping(value = "/liikes/{id}", method = RequestMethod.GET)
 	public @ResponseBody Optional<Liike> findLiikeRest(@PathVariable("id") Long id) {
 		return liikerepository.findById(id);
 	}

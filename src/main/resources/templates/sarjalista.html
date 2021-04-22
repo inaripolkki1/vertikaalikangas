@@ -8,17 +8,17 @@
 charset=UTF-8" />
 </head>
 <body>
+<p th:inline="text">Tervetuloa [[${#httpServletRequest.remoteUser}]]</p>
 	<h1>Sarjat</h1>
 	<div class="col-md-4">
-		<h3 th:inline="text">Tervetuloa [[${#httpServletRequest.remoteUser}]]</h3>
+		
 	</div>
-	<div class="col-md-4" style="padding:20px 0">
-		<form th:action="@{/logout}" method="post">
-			<input type="submit" value="Kirjaudu ulos" class="btn btn-sm btn-danger"/>
-		</form>
-	</div>
+	
 	<a href="/lisaasarja" class="btn btn-primary">Lisää sarja</a>
-	<a href="/liikelista" class="btn btn-primary">Liikelista</a>
+	<a href="/lisaaliike2" class="btn btn-primary">Lisää liike sarjaan</a>
+	<a href="/liikelista" class="btn btn-primary">Liikelista </a>
+	
+	<p>  </p>
 
 
 	<table class="table table-striped">
@@ -27,7 +27,7 @@ charset=UTF-8" />
 				<th>Sarjan nimi</th>
 				<th>Liikkeet</th>
 				<th sec:authorize="hasAuthority('ADMIN')">Poista sarja</th>
-				<th>Muokkaa sarjan nimeä</th>
+				<th sec:authorize="hasAuthority('ADMIN')">Muokkaa sarjan nimeä</th>
 			</tr>
 
 			<tr th:each="sarja : ${sarjat}">
@@ -36,14 +36,14 @@ charset=UTF-8" />
 					<table>
 						<tr th:each="liike : ${sarja.lisatytLiikkeet}">
 							<td th:text="${liike.nimi}"></td>
-							<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/poistaliike/{id}(id=${liike.id})}"
+							<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/poistaliike2/{id}(id=${liike.id})}"
 								class="btn btn-basic btn-sm">Poista</a></td>
 						</tr>
 					</table>
 				</td>
 				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/poistasarja/{id}(id=${sarja.id})}"
 					class="btn btn-danger">Poista</a></td>
-				<td><a th:href="@{/muokkaasarjaa/{id}(id=${sarja.id})}"
+				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/muokkaasarjaa/{id}(id=${sarja.id})}"
 					class="btn btn-success">Muokkaa</a></td>
 			</tr>
 		<tbody>
@@ -51,7 +51,11 @@ charset=UTF-8" />
 		</tbody>
 
 	</table>
-
+<div class="col-md-4" style="padding:20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Kirjaudu ulos" class="btn btn-sm btn-danger"/>
+		</form>
+	</div>
 	<!-- TOIMII	
 <dl th:each="sarja : ${sarjat}">
 		<dt th:text="${sarja.sarjanNimi}">
