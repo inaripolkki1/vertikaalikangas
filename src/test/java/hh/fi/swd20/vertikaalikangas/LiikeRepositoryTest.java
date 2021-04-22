@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import hh.fi.swd20.vertikaalikangas.domain.Liike;
 import hh.fi.swd20.vertikaalikangas.domain.LiikeRepository;
 
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 @DataJpaTest
 public class LiikeRepositoryTest {
 	
